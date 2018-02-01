@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Users Index</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'first_app/style.css' %}">
+    </head>
+    <body>
+        <div id="index_wrapper">
+            <h1>{{ item.title }}</h1>
+            <h3>User's who added this product/item under their wish list:</h3>
+            <p>{{ item.creator.first_name }} {{ item.creator.last_name }}</p>
+            {% for wishlist in wishlists %}
+                <p>{{ wishlist.first_name }} {{ wishlist.last_name }}</p>
+            {% endfor %}
+            <a href="/dashboard">Home</a> | <a href="/logout">Logout</a>
+        </div>
+    </body>
+</html>
+

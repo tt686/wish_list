@@ -1,0 +1,23 @@
+.error {
+    color: red;
+}
+table{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 65%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+tr th{
+    background-color: #cccccc;
+}
+tr:nth-child(even) {
+    background-color: #eeeeee;
+}
+html{
+    margin-left: 25px;
+    margin-top: 30px;
+}

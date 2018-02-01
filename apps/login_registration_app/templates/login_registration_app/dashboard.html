@@ -1,0 +1,74 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Items</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login_registration_app/style.css' %}">
+</head>
+<body>
+    <h1>Welcome to your Wish List Page</h1>
+    <h2>Name: {{ user.first_name }} {{ user.last_name }} | Username: {{user.username}}</h2>
+    <a href="/logout">Logout</a>
+    <a href="/wish_items/create">Add a Item</a>
+
+    <h4>My Wish List:</h4>
+    My Created Items: {{ my_items.count }}  | Favorited Items from Others: {{ favorite_items.count }} 
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Added by</th>
+                <th>Published Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in favorite_items%}
+            <tr>
+                <td><p><a href="/wish_items/{{ item.id }}">{{ item.title }}</a></p></td>
+                <td><p>{{ item.creator.first_name }} {{ item.creator.last_name }}</p></td>
+                <td><p>{{ item.published_date }}</p></td>
+                <td>
+                    <a href="/unfavorite_item/{{ item.id }}"><button>Remove from my Wishlist</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% for item in my_items %}
+            <tr>
+                <td><p><a href="/wish_items/{{ item.id }}">{{ item.title }}</a></p></td>
+                <td><p>{{ item.creator.first_name }} {{ item.creator.last_name }}</p></td>
+                <td><p>{{ item.published_date }}</p></td>
+                <td>
+                    <a href="delete/{{ item.id }}"><button>Delete</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h4>Other User's Wish List:</h4>
+    Count: {{ other_items.count }}
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Added by</th>
+                <th>Published Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in other_items %}
+            <tr>
+                <td><p><a href="/wish_items/{{ item.id }}">{{ item.title }}</a></p></td>
+                <td><p>{{ item.creator.first_name }} {{ item.creator.last_name }}</p></td>
+                <td><p>{{ item.published_date }}</p></td>
+                <td>
+                    <a href="/favorite_item/{{ item.id }}"><button>Add to my Wishlist</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
